@@ -62,7 +62,7 @@ function App() {
         <Tab.Screen name="a" component={HomeScreen1} options={{ headerShown: false }}/>
         <Tab.Screen name="e" component={HomeScreen2} options={{ headerShown: false }}/>
         <Tab.Screen name="u" component={HomeScreen3} options={{ headerShown: false }}/>
-        <Tab.Screen name="i" component={HomeScreen2} options={{ headerShown: false }}/>
+        <Tab.Screen name="i" component={HomeScreen4} options={{ headerShown: false }}/>
       </Tab.Navigator>
     </NavigationContainer>
     </Provider>
