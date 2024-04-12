@@ -2,8 +2,6 @@ import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { View, KeyboardAvoidingView, Platform, StyleSheet, Text } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
-import { deposit, withdraw } from '../balanceSlice';
 
 function HomeScreen3() {
     

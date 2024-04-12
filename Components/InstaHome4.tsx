@@ -1,16 +1,46 @@
-import * as React from 'react';
-import { View, KeyboardAvoidingView, Platform, StyleSheet, Text } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, ListRenderItem, View, KeyboardAvoidingView, Platform, StyleSheet, Text } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { deposit, withdraw } from '../balanceSlice';
 
-function HomeScreen4() {
+interface Item {
+  id: string;
+  title: string;
+}
+
+const DATA: Item[] = [
+  { id: '1', title: 'Item 1' },
+  { id: '2', title: 'Item 2' },
+  { id: '3', title: 'Item 3' },
+  // Add more data items as needed
+];
+
+const HomeScreen4 = () => {
   const dispatch = useDispatch();
   const balance = useSelector((state) => {
     console.log('Bank processing...');
     return state.balance.value;
   });
+
+  const [items, setItems] = useState<Item[]>(DATA);
+
+  const renderItem: ListRenderItem<Item> = ({ item }) => (
+    <View style={{ padding: 20 }}>
+      <Text>{item.title}</Text>
+    </View>
+  );
+
+  const keyExtractor = (item: Item) => item.id;
+
+  const loadMoreData = () => {
+    const newData = [
+      ...items,
+      { id: String(items.length + 1), title: `Item ${items.length + 1}` },
+    ];
+    setItems(newData);
+  };
 
 
   return (
@@ -27,8 +57,24 @@ function HomeScreen4() {
       <View style={{ marginTop: 20 }}>
         <Text style={{ fontSize: 20 }}>Current Balance: {balance}$</Text>
       </View>
+      <View style = {{ marginTop: 20}}/>
+      <Text style ={styles.title}> List! </Text>
+      <FlatList
+      data={items}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
+      onEndReached={loadMoreData}
+      onEndReachedThreshold={0.5} // Load more data when 50% of the list is scrolled
+      ListFooterComponent={() => (
+        <View style={{ padding: 10 }}>
+          <Button onPress={loadMoreData}>Load More</Button>
+        </View>
+      )}
+    />
       </KeyboardAvoidingView>
       </SafeAreaView>
+
+      
   );
 }
 
@@ -47,5 +93,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    
   },
 });

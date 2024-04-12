@@ -1,24 +1,16 @@
-// In App.js in a new project
-
 import * as React from 'react';
 import { useEffect, useState, createContext } from 'react';
-import {TouchableOpacity, View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './Components/InstaHome1';
 import HomeScreen1 from './Components/InstaHome1';
 import HomeScreen2 from './Components/InstaHome2';
 import HomeScreen3 from './Components/InstaHome3';
 import HomeScreen4 from './Components/InstaHome4';
-import HomeScreen5 from './Components/InstaHome5';
-import InstaLogin from './Components/InstaLogin';
 import { InstaSplash } from './Components/InstaSplash';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MyTabBar from './Components/NavBarNew';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import {store} from './store'
-// import { NavigationContainer } from '@react-navigation/native';
 
 
 
