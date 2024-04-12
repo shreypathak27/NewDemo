@@ -11,7 +11,7 @@ interface ContextType {
 
 const HomeScreen2: React.FC<Props> = () => {
   const context = useContext(Context1);
-  const { songName } = context;
+  const songName  = context?.songName ?? 'No song';
 
   return (
     <SafeAreaView style={styles.mainContainer}>

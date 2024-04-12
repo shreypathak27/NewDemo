@@ -1,48 +1,23 @@
-// import HomeScreen3 from "../Components/InstaHome3"
-// import React from 'react';
-// import { render, fireEvent } from '@testing-library/react-native';
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react-native';
+import HomeScreen3 from '../Components/InstaHome3'; 
 
+describe('HomeScreen3', () => {
+    it('should handle number input and display its double', () => {
+        const { getByPlaceholderText, getByText } = render(<HomeScreen3 />);
+        const input = getByPlaceholderText('Enter a number');
+        fireEvent.changeText(input, '4');
+        expect(getByText('8')).toBeTruthy(); // Since 4 * 2 = 8
+    });
 
-// describe('HomeScreen3 component', () => {
-//   it('renders correctly', () => {
-//     const { getByPlaceholderText, getByText } = render(<HomeScreen3 />);
-    
-//     // Check if TextInput and initial text elements are rendered correctly
-//     const inputElement = getByPlaceholderText('Enter a number');
-//     expect(inputElement).toBeTruthy();
-
-//     const doubleNumberText = getByText('0');
-//     expect(doubleNumberText).toBeTruthy();
-
-//     const countText = getByText('Count: 0');
-//     expect(countText).toBeTruthy();
-
-//     const squaredCountText = getByText('Squared Count: 0');
-//     expect(squaredCountText).toBeTruthy();
-
-//     // Check if Button is rendered
-//     const buttonElement = getByText('GO');
-//     expect(buttonElement).toBeTruthy();
-//   });
-
-//   it('updates state and renders correctly on button press', () => {
-//     const { getByPlaceholderText, getByText } = render(<HomeScreen3 />);
-    
-//     const inputElement = getByPlaceholderText('Enter a number');
-//     const buttonElement = getByText('GO');
-
-//     // Trigger onChangeText and onPress events
-//     fireEvent.changeText(inputElement, '5');
-//     fireEvent.press(buttonElement);
-
-//     // Check if updated state values are rendered correctly
-//     const doubleNumberText = getByText('10');
-//     expect(doubleNumberText).toBeTruthy();
-
-//     const countText = getByText('Count: 1');
-//     expect(countText).toBeTruthy();
-
-//     const squaredCountText = getByText('Squared Count: 1');
-//     expect(squaredCountText).toBeTruthy();
-//   });
-// });
+    it('should increment count and calculate squared count correctly', () => {
+        const { getByText } = render(<HomeScreen3 />);
+        const goButton = getByText('GO');
+        fireEvent.press(goButton);
+        expect(getByText('Count: 1')).toBeTruthy();
+        expect(getByText('Squared Count: 1')).toBeTruthy(); 
+        fireEvent.press(goButton);
+        expect(getByText('Count: 2')).toBeTruthy();
+        expect(getByText('Squared Count: 4')).toBeTruthy(); 
+    });
+});

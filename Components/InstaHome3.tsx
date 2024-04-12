@@ -31,7 +31,6 @@ function HomeScreen3() {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}>       
-        <View style={{flex: 0.1}}></View>
       <View style={styles.contentContainer}>
       <TextInput
         keyboardType="numeric"
