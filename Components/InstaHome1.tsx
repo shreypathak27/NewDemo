@@ -1,6 +1,5 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, Image, KeyboardAvoidingView, Platform } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Context1 } from '../App.tsx'
 
@@ -12,6 +11,9 @@ interface Context1Type {
 
 const HomeScreen1 = ({  }) => {
   const context = useContext(Context1)
+  if (!context) {
+    throw new Error('This componen tmust be used within a context1.provider')
+  }
 
   const [isPlay1, setIsPlay1] = useState(true);
 
@@ -83,12 +85,12 @@ const HomeScreen1 = ({  }) => {
       </View>
       <View style={styles.cardContainer}>
 
-          <TouchableOpacity onPress={handlePress5}>
+          <TouchableOpacity testID="playButton5" onPress={handlePress5}>
         <View style={[styles.card, { backgroundColor: 'black' }]}>
           
           <Text style={styles.cardText}>Stress day Relaxation</Text>
           <View style={styles.rowContainer}>
-            <TouchableOpacity onPress={handlePress1}>
+            <TouchableOpacity testID="playButton1" onPress={handlePress1}>
               <View style={styles.buttonContainer}>
                 <Image source={{ uri: imageUri1 }} style={{ width: 25, height: 25 }} />
               </View>
@@ -100,11 +102,11 @@ const HomeScreen1 = ({  }) => {
         </View>
         </TouchableOpacity>
 
-          <TouchableOpacity onPress={handlePress6}>
+          <TouchableOpacity testID="playButton6" onPress={handlePress6}>
         <View style={[styles.card, { backgroundColor: 'white' }]}>
           <Text style={[styles.cardText, { color: 'black' }]}>Evening Meditation to relax</Text>
           <View style={styles.rowContainer}>
-            <TouchableOpacity onPress={handlePress2}>
+            <TouchableOpacity testID="playButton2" onPress={handlePress2}>
               <View style={styles.buttonContainer}>
                 <Image source={{ uri: imageUri2 }} style={{ width: 25, height: 25 }} />
               </View>
@@ -136,7 +138,7 @@ const HomeScreen1 = ({  }) => {
             </View>
           </View>
           <View style={styles.imageButtonContainer}>
-            <TouchableOpacity onPress={handlePress3}>
+            <TouchableOpacity testID="playButton3" onPress={handlePress3}>
               <View style={styles.imageButton}>
                 <Image
                   source={{ uri: imageUri3 }}
@@ -165,7 +167,7 @@ const HomeScreen1 = ({  }) => {
             </View>
           </View>
           <View style={styles.imageButtonContainer}>
-            <TouchableOpacity onPress={handlePress4}>
+            <TouchableOpacity testID="playButton6" onPress={handlePress4}>
               <View style={[styles.imageButton, { backgroundColor: '#f7d474' }]}>
                 <Image
                   source={{ uri: imageUri4 }}
