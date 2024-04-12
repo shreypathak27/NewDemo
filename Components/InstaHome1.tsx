@@ -5,6 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Context1 } from '../App.tsx'
 
 
+interface Context1Type {
+  songName: string;
+  setSongName: (name: string) => void;
+}
+
 const HomeScreen1 = ({  }) => {
   const context = useContext(Context1)
 

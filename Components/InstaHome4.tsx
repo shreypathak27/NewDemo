@@ -19,7 +19,7 @@ const DATA: Item[] = [
 
 const HomeScreen4 = () => {
   const dispatch = useDispatch();
-  const balance = useSelector((state) => {
+  const balance = useSelector((state: any) => {
     console.log('Bank processing...');
     return state.balance.value;
   });

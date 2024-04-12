@@ -32,7 +32,7 @@ function HomeScreen3() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}>       
         <View style={{flex: 0.1}}></View>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={styles.contentContainer}>
       <TextInput
         keyboardType="numeric"
         onChangeText={(text) => {
@@ -40,7 +40,7 @@ function HomeScreen3() {
           setNumber(isNaN(parsedNumber) ? 0 : parsedNumber);
         }}
         placeholder="Enter a number"
-        style={{ borderWidth: 1, padding: 10, margin: 10 }}
+        style={styles.textInputs}
       />
       <Text>{doubleNumber}</Text>
       <Text>Count: {count}</Text>
@@ -65,6 +65,13 @@ const styles = StyleSheet.create({
       fontSize: 20,
       fontWeight: 'bold',
     },
+    textInputs: 
+    { borderWidth: 1, padding: 10, margin: 10 },
+    contentContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
   });
   
 

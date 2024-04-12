@@ -5,6 +5,10 @@ import { Context1 } from '../App';
 
 interface Props {}
 
+interface ContextType {
+  songName: string; 
+}
+
 const HomeScreen2: React.FC<Props> = () => {
   const context = useContext(Context1);
   const { songName } = context;
