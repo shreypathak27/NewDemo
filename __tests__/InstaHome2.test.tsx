@@ -2,9 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import { Text } from 'react-native';
 import HomeScreen2 from '../Components/InstaHome2'; 
-import { Context1 } from '../App'; // Adjust path as necessary
+import { Context1 } from '../App'; 
 
-// Create a helper function to provide context values
 const customRender = (ui: React.ReactElement, { providerValues }: { providerValues: any }) => {
   return render(
     <Context1.Provider value={providerValues}>{ui}</Context1.Provider>

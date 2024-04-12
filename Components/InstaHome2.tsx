@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
-import { View, KeyboardAvoidingView, Platform, StyleSheet, Text } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, KeyboardAvoidingView, Platform, StyleSheet, Text, ActivityIndicator, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Context1 } from '../App';
+import { fetchTopTracks } from '../utility/LastFmApi';
 
 interface Props {}
 
@@ -12,6 +13,18 @@ interface ContextType {
 const HomeScreen2: React.FC<Props> = () => {
   const context = useContext(Context1);
   const songName  = context?.songName ?? 'No song';
+  const [tracks, setTracks] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const loadTopTracks = async () => {
+            const topTracks = await fetchTopTracks('Cher');
+            setTracks(topTracks);
+            setLoading(false);
+        };
+
+        loadTopTracks();
+    }, []);
 
   return (
     <SafeAreaView style={styles.mainContainer}>
@@ -20,6 +33,19 @@ const HomeScreen2: React.FC<Props> = () => {
           <View style={styles.contentContainer}>
             <Text style={styles.title}>Currently playing: {songName}</Text>
           </View>
+        </View>
+        <View style={styles.container}>
+            {loading ? (
+                <ActivityIndicator size="large" color="#0000ff" />
+            ) : (
+                <FlatList
+                    data={tracks}
+                    keyExtractor={item => item.url}
+                    renderItem={({ item }) => (
+                        <Text>{item.name} by {item.artist.name}</Text>
+                    )}
+                />
+            )}
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

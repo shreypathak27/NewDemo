@@ -14,7 +14,6 @@ const DATA: Item[] = [
   { id: '1', title: 'Item 1' },
   { id: '2', title: 'Item 2' },
   { id: '3', title: 'Item 3' },
-  // Add more data items as needed
 ];
 
 const HomeScreen4 = () => {

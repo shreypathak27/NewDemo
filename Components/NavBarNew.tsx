@@ -1,16 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
+interface MyTabBarProps extends BottomTabBarProps {
+  tabIcons: string[];
+}
 
-function MyTabBar({ state, descriptors, navigation, tabIcons }) {
+function MyTabBar({ state, descriptors, navigation, tabIcons }: MyTabBarProps) {
   return (
     <View style={styles.tabContainer}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
-        const label = options.tabBarLabel || options.title || route.name;
+        const label = options.tabBarLabel || options.title || route.name;  
 
         const isFocused = state.index === index;
 
@@ -18,12 +21,14 @@ function MyTabBar({ state, descriptors, navigation, tabIcons }) {
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,
+            canPreventDefault: true, 
           });
-
+        
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate(route.name);
           }
         };
+        
 
         const onLongPress = () => {
           navigation.emit({
@@ -55,14 +60,6 @@ function MyTabBar({ state, descriptors, navigation, tabIcons }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 20,
-  },
   tabContainer: {
     flexDirection: 'row',
     backgroundColor: '#eeeeee',

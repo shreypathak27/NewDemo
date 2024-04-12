@@ -27,7 +27,6 @@ describe('HomeScreen1', () => {
     const playButton = getByTestId('playButton1');
     const playImage = getByTestId('playImage1');
     fireEvent.press(playButton);
-    // Since initial state is play, after press it should show pause icon
     expect(playImage.props.source.uri).toBe('https://cdn-icons-png.flaticon.com/256/151/151859.png');
   });
 
@@ -37,3 +36,4 @@ describe('HomeScreen1', () => {
     expect(mockSetSongName).toHaveBeenCalledWith('Stress Relieving Song');
   });
 });
+
